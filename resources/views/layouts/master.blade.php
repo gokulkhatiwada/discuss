@@ -36,10 +36,10 @@
                 @yield('button')
 
                 <div class="nav flex-column nav-pills shadow-lg">
-                    <a class="nav-link @if(!$filter || $filter===null) active @endif" href="{{ route('discussion') }}">All Threads</a>
-                    <a class="nav-link @if($filter && $filter==='my-threads') active @endif" href="{{ route('discussion',['filter'=>'my-threads']) }}">My Threads</a>
-                    <a class="nav-link @if($filter && $filter==='participated') active @endif" href="{{ route('discussion',['filter'=>'participated']) }}">My Participation</a>
-                    <a class="nav-link @if($filter && $filter==='popular') active @endif" href="{{ route('discussion',['filter'=>'popular']) }}">Popular This Week</a>
+                    <a class="nav-link @if(isset($filter) && $filter===null) active @endif" href="{{ route('discussion') }}">All Threads</a>
+                    <a class="nav-link @if(isset($filter) && $filter==='my-threads') active @endif" href="{{ route('discussion',['filter'=>'my-threads']) }}">My Threads</a>
+                    <a class="nav-link @if(isset($filter) && $filter==='participated') active @endif" href="{{ route('discussion',['filter'=>'participated']) }}">My Participation</a>
+                    <a class="nav-link @if(isset($filter) && $filter==='popular') active @endif" href="{{ route('discussion',['filter'=>'popular']) }}">Popular This Week</a>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-12 px-5">

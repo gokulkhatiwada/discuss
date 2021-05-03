@@ -24,7 +24,7 @@
                 @isset($thread->last_reply_at)
                     <strong>Last activity</strong> <strong>{{ $thread->last_reply_at->diffForHumans() }}</strong>
                 @else
-                    <strong>{{ $thread->discussant->name }}</strong> posted <strong>{{ $thread->created_at->diffForHumans() }}</strong>
+                    <strong>{{ ($thread->anonymous)?'Anonymous':$thread->discussant->getDisplayName() }}</strong> posted <strong>{{ $thread->created_at->diffForHumans() }}</strong>
                 @endisset
                 <span class="float-right text-muted">
                                  <i class="fas fa-eye"></i> {{ $thread->views }}
@@ -57,12 +57,15 @@
                         @error('text') {{ $message }} @enderror
 
                         <input id="previewThis" type="checkbox"> Preview Mode
+
+                        @if(config('discuss.anonymous.thread'))
                         <div class="form-check float-right">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                             <label class="form-check-label" for="flexCheckDefault">
                                 Anonymous
                             </label>
                         </div>
+                            @endif
 
                     </div>
 

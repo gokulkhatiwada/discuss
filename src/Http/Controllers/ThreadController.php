@@ -3,6 +3,8 @@
 
 namespace Aankhijhyaal\Discuss\Http\Controllers;
 
+use Aankhijhyaal\Discuss\Events\DiscussAfterThreadCreateEvent;
+use Aankhijhyaal\Discuss\Events\DiscussBeforeThreadCreateEvent;
 use Aankhijhyaal\Discuss\Http\Requests\ThreadRequest;
 use Aankhijhyaal\Discuss\Models\Category;
 use Aankhijhyaal\Discuss\Models\Thread;
@@ -22,10 +24,13 @@ class ThreadController extends Controller
   public function store(ThreadRequest $request)
   {
 
+    event(new DiscussBeforeThreadCreateEvent($request));
+
     $uuid = Str::uuid()->toString();
     $slug = Str::slug($request->title,'-').'-'.$uuid;
 
     $category = Category::where('slug',$request->category)->first();
+
 
     $thread = auth()->user()->threads()->create([
         'uuid'=>$uuid,
@@ -37,13 +42,14 @@ class ThreadController extends Controller
     ]);
 
 
+
+    event(new DiscussAfterThreadCreateEvent($thread));
+
+
     return $request->expectsJson()? response()->json(['message','Thread created'],200)
         :redirect()->back()->with('success','Thread created successfully');
 
   }
-
-
-
 
   public function show(Request $request,$slug)
   {

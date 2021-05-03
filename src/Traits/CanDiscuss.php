@@ -6,7 +6,11 @@ namespace Aankhijhyaal\Discuss\Traits;
 
 trait CanDiscuss
 {
-  abstract function getViewName();
+  abstract function getDisplayName();
+
+  abstract function getProfileUrl();
+
+  abstract function getImageUrl();
 
   public function threads()
   {
