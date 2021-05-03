@@ -1,0 +1,36 @@
+{
+    "name": "aankhijhyaal/discuss",
+    "description": "discussion forum for laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gokul Khatiwada",
+            "email": "gokulkhatiwada91@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "genealabs/laravel-model-caching": "9999999-dev"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.16"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aankhijhyaal\\Discuss\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aankhijhyaal\\Discuss\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Aankhijhyaal\\Discuss\\DiscussServiceProvider"
+            ]
+        }
+    }
+}
